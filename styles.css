@@ -1,0 +1,178 @@
+/*
+    This block of code allows you to add local fonts to your CSS file; I'm not
+    including the font files I used in the live code here, so these `url()`s won't
+    work, but if you want to test this out, you can add your own font files to 
+    the `fonts` directory!
+ */
+/* @font-face {
+    font-family: "ABCMaxi";
+    src: url(fonts/ABCMaxiRound-Regular.otf),
+    url(fonts/ABCMaxiRound-Light.otf),
+    url(fonts/ABCMaxiRound-Bold.otf);
+} */
+
+/*
+    This block of code applies these CSS properties to everything within the 
+    <body> HTML tag
+ */
+body {
+    --main-pink: #fcd9d9;
+    --main-green: #779179;
+    width: 90%;
+    max-width: 900px;
+    margin: 2em auto;
+    /* 
+        This formatting means:
+
+        font size/line height 
+        font families (Arial and Helvetica)
+        generic font family (sans-serif) */
+    font:
+        1em/1.2 Arial,
+        Helvetica,
+        sans-serif;
+
+    /* If you want to use the local fonts you imported, you can just refer to
+       the font family name you gave it!
+    */
+    /* font:
+        1em/1.2 ABCMaxi,
+        Helvetica,
+        sans-serif; */
+}
+
+header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--main-green);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: x-large;
+    background-color: var(--main-pink);
+}
+
+.container {
+    display: grid;
+    /* 
+        `fr` is the standard unit of measurement when using a grid display!
+        it allows you to assign a fraction of the available container space to
+        a given row or column. you can use exact units of measure like `px` if 
+        you want to, but `fr` will automatically resize your grid as the screen 
+        size changes.
+     */
+    grid-template-rows: 1fr 8fr 1fr;
+    /* 
+        this adds a 20px gap between each row and column. CSS has the `row-gap`
+        and `column-gap` properties if you want to apply gaps specifically to either
+        your rows or columns.
+     */
+    gap: 20px;
+}
+
+.articles {
+    /*
+        We can have subgrids! By giving the `.articles` div a grid display, it 
+        becomes a grid within the container's grid display.
+     */
+    display: grid;
+    gap: 10px;
+    /*
+        I didn't talk about this in hours, but an equivalent way of writing this
+        would be to use CSS's `repeat()` function:
+
+        grid-template-columns: 2fr repeat(2, 1fr);
+
+        You can apply this function to all or some of the columns/rows you define
+        in your grid. This comes in handy when a grid has columns/rows that are
+        all the same size (e.g. 7 columns that are 1fr can be shortened to
+        `repeat(7, 1fr)` instead of writing out `1fr` seven times).
+     */
+    grid-template-columns: 2fr 1fr 1fr;
+
+    /*
+        The below syntax comes from using line-based placement with the grid
+        display. We can indicate what "column lines" and "row lines" we want
+        our elements to start and end at. I'm using the shorthand `grid-column`
+        and `grid-row` properties, which allow me to specify the start and end
+        in one property, but CSS also has `grid-column-start` and `grid-column-end`
+        (and same for rows) if you ever want to just specify one.
+     */
+    .article-main {
+        /*
+            We're starting this div on column line 1, and ending on column line 4
+         */
+        grid-column: 1 / 4;
+        /* we're starting and ending on row line 1 */
+        grid-row: 1;
+    }
+
+    .article-left {
+        grid-column: 1 / 2;
+        grid-row: 2;
+    }
+
+    .article-right {
+        grid-column: 2 / 4;
+        grid-row: 2;
+    }
+
+    .article-main, .article-left, .article-right {
+        border: 2px solid var(--main-pink);
+        border-radius: 5px;
+        padding: 10px;
+    }
+}
+
+/* 
+    * means all children of .articles; `div:hover` would've had the same effect,
+    since every child of `.article` is a div.
+ */
+.articles *:hover {
+    background-color: var(--main-pink);
+}
+
+.articles div:first-child:hover {
+    color: var(--main-green);
+}
+
+.article-main p::first-line {
+    font-weight: bold;
+}
+
+/* 
+    The below code uses the grid-template-areas and grid-areas CSS properties to
+    get the same layout we achieved using line-based placement. If you want to 
+    uncomment this code block to test it out, you should also comment out
+    the div with the "articles" class name in the `index.html` file.
+ */
+/* .container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "header header"
+        "main main"
+        "a1 a2"
+        "footer footer";
+}
+
+header {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.article-main {
+    grid-area: main;
+}
+
+.article-left {
+    grid-area: a1;
+}
+
+.article-right {
+    grid-area: a2;
+} */
