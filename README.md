@@ -13,6 +13,6 @@ Our goal is to give you some more exposure with CSS as a language beyond the ver
   - Importing local fonts from your computer
 
 ## How to Use This Repository
-This repository contains the livecode written during the 2/13 special topics office hours session. You can clone this repo and run the `index.html` file to see the site created during the livecode, and you can edit any and all of the website's styling via the `styles.css` file. 
+This repository contains the livecode written during the 2/13 special topics office hours session. You can clone this repo and run the `index.html` file to see the site created during the livecode, and you can edit any and all of the website's styling via the `styles.css` file. There are explanatory comments included in the CSS file—if anything is unclear, feel free to come to office hours or make an Ed post!
 
 NB: `fonts/` doesn't have the font files that were used during the hours session, but feel free to add your own font files to play around with importing local fonts!
